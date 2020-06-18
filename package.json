@@ -1,0 +1,23 @@
+{
+  "name": "excel-app",
+  "version": "1.0.0",
+  "description": "JS native application",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvgeniyKrishtopa/Excel.git"
+  },
+  "keywords": [
+    "JS",
+    "Frontend"
+  ],
+  "author": "Evgeniy Krishtopa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EvgeniyKrishtopa/Excel/issues"
+  },
+  "homepage": "https://github.com/EvgeniyKrishtopa/Excel#readme"
+}
