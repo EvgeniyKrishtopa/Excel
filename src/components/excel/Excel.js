@@ -1,14 +1,20 @@
+import { $ } from "@core/dom";
+
 export class Excel {
   constructor(selector, options) {
-    this.$el = document.getElementById(selector);
+    this.$el = $(selector);
     this.components = options.components || [];
   }
 
   getRoot() {
-    const $root = document.createElement("div");
-    this.components.forEach((Component) => {
-      const component = new Component();
-      $root.insertAdjacentHTML("beforeend", component.toHTML());
+    const $root = $.create("div", "excel");
+    this.components = this.components.map((Component) => {
+      const $el = $.create("div", Component.className);
+      const component = new Component($el);
+      $el.html(component.toHTML());
+      $root.append($el);
+
+      return component;
     });
 
     return $root;
@@ -16,5 +22,8 @@ export class Excel {
 
   render() {
     this.$el.append(this.getRoot());
+    this.components.forEach((component) => {
+      component.init();
+    });
   }
 }

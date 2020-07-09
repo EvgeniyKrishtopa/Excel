@@ -13,6 +13,9 @@
     "arrow-parents": "off",
     "linebreak-style": "off",
     "require-jsdoc": [0],
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "operator-linebreak": "off",
+    "no-debugger": "off",
+    "indent": "off"
   }
 }
