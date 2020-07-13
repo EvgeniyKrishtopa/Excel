@@ -38,6 +38,30 @@ class Dom {
     }
     return this;
   }
+
+  getParentNode(node) {
+    return $(node.$el.closest('[data-type = "resizable"]'));
+  }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector);
+  }
+
+  attr(node) {
+    return node.$el.getAttribute("data-column-title");
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect();
+  }
+
+  css(styles = {}) {
+    Object.keys(styles).forEach((key) => {
+      this.$el.style[key] = styles[key];
+    });
+
+    return this;
+  }
 }
 
 export function $(selector) {
