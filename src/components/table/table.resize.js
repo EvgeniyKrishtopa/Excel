@@ -1,8 +1,6 @@
-import { $ } from "@core/dom";
-
-export function tableResizeHandler(event, $root, resizeType) {
+export function tableResizeHandler(event, $root, resizeType, $resizer) {
   const sideProp = resizeType === "col" ? "bottom" : "right";
-  const $resizer = $(event.target).css({
+  $resizer.css({
     opacity: 1,
     [sideProp]: -5000 + "px",
   });
@@ -32,7 +30,7 @@ export function tableResizeHandler(event, $root, resizeType) {
 
     if (event.target === $resizer.$el) {
       if (resizeType === "col") {
-        const elems = $root.findAll(`[data-ceil-title = ${colTitle}]`);
+        const elems = $root.findAll(`[data-ceil-title = "${colTitle}"]`);
         const resizerCurrentPos = e.pageX - coords.right;
         const newWidth = coords.width + resizerCurrentPos + "px";
         $parent.css({ width: newWidth });
