@@ -16,6 +16,7 @@
     "arrow-parens": "off",
     "operator-linebreak": "off",
     "no-debugger": "off",
-    "indent": "off"
+    "indent": "off",
+    "space-before-function-paren": "off"
   }
 }
