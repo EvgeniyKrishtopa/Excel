@@ -1,3 +1,5 @@
+import { defaultStyles } from "../constants";
+
 export function capitalize(str) {
   if (typeof str !== "string") {
     return "";
@@ -39,4 +41,50 @@ export function nextSelector(key, col, row) {
   }
 
   return `[data-id="${row}:${col}"]`;
+}
+
+export function storage(key, data = null) {
+  if (!data) {
+    return (
+      JSON.parse(localStorage.getItem(key)) || {
+        colState: {},
+        rowState: {},
+        dataState: {},
+        stylesState: {},
+        currentText: "",
+        tableTitle: "",
+        currentStyles: defaultStyles,
+      }
+    );
+  } else {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+}
+
+export function isEqual(a, b) {
+  if (typeof a === "object" && typeof b === "object") {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
+  return a === b;
+}
+
+export const camelToDashCase = (s) => s.replace(/[A-Z]/g, "-$&").toLowerCase();
+
+export function toInlineStyles(styles = {}) {
+  return Object.keys(styles)
+    .map((key) => `${camelToDashCase(key)}:${styles[key]}`)
+    .join("; ");
+}
+
+export function debounce(fn, wait) {
+  let timeout;
+
+  return function (...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      fn(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }

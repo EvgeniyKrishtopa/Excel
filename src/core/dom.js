@@ -15,7 +15,7 @@ class Dom {
   }
 
   text(data) {
-    if (typeof data === "string") {
+    if (typeof data !== "undefined") {
       this.$el.textContent = data;
       return this;
     }
@@ -93,6 +93,15 @@ class Dom {
     return node.$el.getAttribute("data-column-title");
   }
 
+  attribute(name, val) {
+    if (val) {
+      this.$el.setAttribute(name, val);
+      return this;
+    }
+
+    return this.$el.getAttribute(name);
+  }
+
   getCoords() {
     return this.$el.getBoundingClientRect();
   }
@@ -103,6 +112,13 @@ class Dom {
     });
 
     return this;
+  }
+
+  getStyles(styles = []) {
+    return styles.reduce((res, s) => {
+      res[s] = this.$el.style[s];
+      return res;
+    }, {});
   }
 }
 
