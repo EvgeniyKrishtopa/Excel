@@ -1,4 +1,5 @@
 import { ExcelComponent } from "../../core/ExcelComponent";
+import { changeTableTitle } from "../../redux/actions";
 
 export class Header extends ExcelComponent {
   static className = "excel__header";
@@ -6,14 +7,29 @@ export class Header extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: "header",
-      listeners: [],
+      listeners: ["input"],
+      subscribe: ["tableTitle"],
       ...options,
     });
   }
 
+  init() {
+    super.init();
+    this.$header = this.$root.find(".input");
+  }
+
+  storeChanged(state) {
+    this.$header.text(state.tableTitle);
+  }
+
+  getCurrentValue() {
+    const state = this.store.getState();
+    return state.tableTitle || "New Table";
+  }
+
   toHTML() {
     return `      
-    <input type="text" class="input" value="New Table" />
+    <input type="text" class="input" value="${this.getCurrentValue()}" />
 
     <div>
 
@@ -26,5 +42,9 @@ export class Header extends ExcelComponent {
       </div>
 
     </div>`;
+  }
+
+  onInput(event) {
+    this.$dispatch(changeTableTitle(event.target.value));
   }
 }
