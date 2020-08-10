@@ -2,7 +2,7 @@ class Dom {
   constructor(selector) {
     this.$el =
       typeof selector === "string"
-        ? document.getElementById(selector)
+        ? document.querySelector(selector)
         : selector;
   }
 
