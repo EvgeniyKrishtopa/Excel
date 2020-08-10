@@ -88,3 +88,7 @@ export function debounce(fn, wait) {
     timeout = setTimeout(later, wait);
   };
 }
+
+export function getCurrentDate() {
+  return Date.now().toString();
+}

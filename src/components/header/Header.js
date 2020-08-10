@@ -1,5 +1,7 @@
 import { ExcelComponent } from "../../core/ExcelComponent";
 import { changeTableTitle } from "../../redux/actions";
+import { getCurrentDate } from "../../core/utils";
+import { ActiveRoute } from "../../core/routes/ActiveRoute";
 
 export class Header extends ExcelComponent {
   static className = "excel__header";
@@ -7,10 +9,12 @@ export class Header extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: "header",
-      listeners: ["input"],
+      listeners: ["input", "click"],
       subscribe: ["tableTitle"],
       ...options,
     });
+
+    this.date = getCurrentDate();
   }
 
   init() {
@@ -33,18 +37,26 @@ export class Header extends ExcelComponent {
 
     <div>
 
-      <div class="button">
-        <i class="material-icons">delete</i>
-      </div>
+      <button class="button">
+        <i data-stamp="delete-table" class="material-icons">delete</i>
+      </button>
 
-      <div class="button">
+      <button class="button">
         <i class="material-icons">exit_to_app</i>
-      </div>
+      </button>
 
     </div>`;
   }
 
   onInput(event) {
     this.$dispatch(changeTableTitle(event.target.value));
+  }
+
+  onClick(event) {
+    if (event.target.dataset.stamp === "delete-table") {
+      localStorage.removeItem(`excel: ${ActiveRoute.param}`);
+    }
+
+    ActiveRoute.navigate("/");
   }
 }
