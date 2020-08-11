@@ -23,7 +23,7 @@ module.exports = {
   entry: ["@babel/polyfill", "./index.js"],
   output: {
     filename: filename("js"),
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
   },
   resolve: {
     extensions: [".js"],
@@ -34,7 +34,7 @@ module.exports = {
   },
   devtool: isDev ? "source-map" : false,
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "build"),
     compress: true,
     port: 3000,
   },
@@ -51,7 +51,7 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, "src/favicon.ico"),
-          to: path.resolve(__dirname, "dist"),
+          to: path.resolve(__dirname, "build"),
         },
       ],
     }),
