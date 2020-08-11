@@ -24,7 +24,7 @@ function setCurrentData(key) {
 }
 
 function setUrl(key) {
-  return `/#excel/${key.slice(7)}`;
+  return `/Excel/#excel/${key.slice(7)}`;
 }
 
 function getAllKeys() {
