@@ -37,7 +37,7 @@ export class Header extends ExcelComponent {
 
     <div>
 
-      <button class="button">
+      <button class="button" data-stamp="delete-table">
         <i data-stamp="delete-table" class="material-icons">delete</i>
       </button>
 
@@ -53,10 +53,12 @@ export class Header extends ExcelComponent {
   }
 
   onClick(event) {
-    if (event.target.dataset.stamp === "delete-table") {
-      localStorage.removeItem(`excel: ${ActiveRoute.param}`);
-    }
+    if (event.target.nodeName !== "INPUT") {
+      if (event.target.dataset.stamp === "delete-table") {
+        localStorage.removeItem(`excel: ${ActiveRoute.param}`);
+      }
 
-    ActiveRoute.navigate("/");
+      ActiveRoute.navigate("");
+    }
   }
 }
