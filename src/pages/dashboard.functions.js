@@ -24,7 +24,10 @@ function setCurrentData(key) {
 }
 
 function setUrl(key) {
-  return `/Excel/#excel/${key.slice(7)}`;
+  if (process.env.NODE_ENV === "production") {
+    return `Excel/#excel/${key.slice(7)}`;
+  }
+  return `/#excel/${key.slice(7)}`;
 }
 
 function getAllKeys() {
