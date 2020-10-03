@@ -2,7 +2,7 @@
 
 This is my Excel application. I've created it with pure js.
 In this application you can create and delete spreadsheets and manage your data with toolbar. 
-Link: https://evgeniykrishtopa.github.io/Excel/
+## Link: https://evgeniykrishtopa.github.io/Excel/
 
 In the project directory, you can run:
 
